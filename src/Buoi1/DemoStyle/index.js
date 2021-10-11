@@ -3,58 +3,38 @@ import { Text, View } from 'react-native'
 
 export default function DemoStyle() {
     return (
-        <View style={{ marginTop: 50, paddingLeft: 10, paddingRight: 20 }}>
-            <View style={{
-                backgroundColor: '#3D85C6',
-                height: 145,
-                justifyContent: 'center',
-                alignItems: 'center',
-                borderRadius: 10,
-                marginBottom: 10
-            }}>
-                <Text>Blue : #3D85C6</Text>
+        <View style={{ marginTop: 50 }} >
+            <View style={boxStyle}>
+                <Text style={{ textStyling }}>Blue : #3D85C6</Text>
             </View>
-            <View style={{
-                backgroundColor: '#C9C9FF',
-                height: 145,
-                justifyContent: 'center',
-                alignItems: 'center',
-                borderRadius: 10,
-                marginBottom: 10
-            }}>
-                <Text>Purple : #C9C9FF</Text>
+            <View style={boxStyle}>
+                <Text style={{ textStyling }}>Purple : #C9C9FF</Text>
             </View>
-            <View style={{
-                backgroundColor: '#FF0000',
-                height: 145,
-                justifyContent: 'center',
-                alignItems: 'center',
-                borderRadius: 10,
-                marginBottom: 10
-            }}>
-                <Text>Red : ##FF0000</Text>
+            <View style={boxStyle}>
+                <Text style={{ textStyling }}>Red : ##FF0000</Text>
             </View>
-            <View style={{
-                backgroundColor: '#FFFF00',
-                height: 145,
-                justifyContent: 'center',
-                alignItems: 'center',
-                borderRadius: 10,
-                marginBottom: 10
-            }}>
-                <Text>Yellow : #FFFF00</Text>
+            <View style={boxStyle}>
+                <Text style={{ textStyling }}>Yellow : #FFFF00</Text>
             </View>
-            <View style={{
-                backgroundColor: '#FFC0CB',
-                height: 145,
-                justifyContent: 'center',
-                alignItems: 'center',
-                borderRadius: 10,
-                marginBottom: 10
-            }}>
-                <Text>Pink : #FFC0CB</Text>
+            <View style={boxStyle}>
+                <Text style={{ textStyling }}>Pink : #FFC0CB</Text>
             </View>
 
-        </View>
+        </ View>
     )
+}
+const boxStyle = {
+    backgroundColor: '#FFC0CB',
+    height: 145,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    marginBottom: 10,
+    marginLeft: 20,
+    marginRight: 20,
+};
+
+const textStyling = {
+    fontSize: 50,
+    fontWeight: '700'
 }
