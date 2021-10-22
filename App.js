@@ -11,12 +11,17 @@ import BaiTapReDoUI from './src/Buoi2/LamLaiBaiTapUI';
 import BaiTapUiBuoi3 from './src/Buoi3/BaiTapUI';
 import BindingData from './src/Buoi3/BindingData';
 import RenderList from './src/Buoi3/RenderList/img';
+import DemoFlatList from './src/Buoi4/DemoFlatList';
+import DemoScrollView from './src/Buoi4/DemoScrollView';
+import DemoSectionList from './src/Buoi4/DemoSectionList';
+import ExampleRender from './src/Buoi4/ExRender';
+import OanTuTiGame from './src/Buoi5/OanTuXiGame';
 
 
 const App = () => {
   return (
     <Fragment>
-      <RenderList />
+      <OanTuTiGame />
     </Fragment>
   );
 };
