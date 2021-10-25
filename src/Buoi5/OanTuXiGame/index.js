@@ -1,12 +1,149 @@
 import React, { Component, Fragment } from 'react'
-import { Text, View, StyleSheet, ImageBackground, StatusBar, Image, SafeAreaView } from 'react-native'
+import { Text, View, StyleSheet, ImageBackground, StatusBar, Image, SafeAreaView, Alert } from 'react-native'
 import { bgGame, computer, paper, player, rock, scissor } from '../Images';
 import BtnItem from './BtnItem';
 import PlayItem from './PlayItem';
+import SelectContent from './SelectContent';
 import SelectItem from './SelectItem';
 
 export class OanTuTiGame extends Component {
+
+    state = {
+        playerSelect: {
+            id: 'scissor',
+            image: scissor
+        },
+        computerSelect: {
+            id: 'rock',
+            image: rock,
+        },
+        listSelect: [
+            {
+                id: 'scissor',
+                image: scissor,
+            },
+            {
+                id: 'rock',
+                image: rock,
+            },
+            {
+                id: 'paper',
+                image: paper,
+            }
+        ],
+        score: 0,
+        times: 9,
+        isGameOver: false,
+    }
+
+    onSelect = (playerSelect) => {
+        this.setState({ playerSelect })
+    }
+
+    onPlayPress = () => {
+        if (this.state.times <= 0) {
+
+        }
+        else {
+            let computerSelect;
+
+            // this.state.listSelect[2]
+            const randomBotSelect = setInterval(() => {
+                computerSelect = this.state.listSelect[2];
+                this.setState({ computerSelect }, () => {
+                    // console.log(computerSelect);
+                })
+            }, 200);
+            //! clear Interval
+            setTimeout(() => {
+                clearInterval(randomBotSelect);
+                this.calResult();
+            }, 2000)
+        }
+
+
+    }
+
+    onResetPress = () => {
+        this.setState({
+            score: 0,
+            times: 9,
+        })
+    }
+
+    onGameOver = () => {
+        Alert.alert("You Lose", "Game Over !!!!")
+        this.setState({ isGameOver: true })
+        return <View style={styles.infoContainer}>
+            <Text style={styles.infoText}>Game Over !!!</Text>
+        </View>
+    }
+    calResult = () => {
+        const { playerSelect, computerSelect, times, score } = this.state;
+        let timesResult = times;
+        let scoreResult = score;
+        // if (playerSelect.id === 'scissor' && computerSelect.id === 'rock') {
+        //     timesResult--
+        // }
+        // else if (playerSelect.id === 'scissor' && computerSelect.id === 'paper') {
+        //     scoreResult++;
+        //     timesResult++;
+        // }
+        switch (playerSelect.id) {
+            case 'rock':
+                switch (computerSelect.id) {
+                    case 'scissor':
+                        scoreResult++
+                        timesResult++
+                        break;
+
+                    case 'paper':
+                        timesResult--;
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case 'paper':
+                switch (computerSelect.id) {
+                    case 'rock':
+                        scoreResult++
+                        timesResult++
+                        break;
+
+                    case 'scissor':
+                        timesResult--
+                        break;
+
+                    default:
+                        break;
+                }
+                break;
+            case 'scissor':
+                switch (computerSelect.id) {
+                    case 'rock':
+                        timesResult--
+                        break;
+
+                    case 'paper':
+                        scoreResult++
+                        timesResult++;
+                        break;
+
+                    default:
+                        break;
+                }
+            default:
+                break;
+        }
+        this.setState({ times: timesResult, score: scoreResult })
+        if (scoreResult <= 0) {
+
+        }
+    }
+
     render() {
+        const { playerSelect, computerSelect, score, times, listSelect } = this.state;
         return (
             <ImageBackground
                 source={bgGame}
@@ -16,21 +153,24 @@ export class OanTuTiGame extends Component {
                 <SafeAreaView style={styles.safeAreaView}>
                     <StatusBar barStyle="light-content" />
                     <View style={styles.playContainer}>
-                        <PlayItem selectImage={rock} playerImage={player} />
-                        <PlayItem selectImage={paper} playerImage={computer} />
+                        <PlayItem selectImage={playerSelect.image} playerImage={player} />
+                        <PlayItem selectImage={computerSelect.image} playerImage={computer} />
                     </View>
                     <View style={styles.selectContainer}>
-                        <SelectItem selectImage={paper} />
-                        <SelectItem selectImage={rock} />
-                        <SelectItem selectImage={scissor} />
+                        <SelectContent
+                            playerSelectItem={playerSelect.id}
+                            onSelect={this.onSelect}
+                            listSelect={listSelect} />
                     </View>
-                    <View style={styles.infoContainer}>
-                        <Text style={styles.infoText}>Scores: 0</Text>
-                        <Text style={styles.infoText}>Times: 9</Text>
-                    </View>
+                    {times > 0 ? <View style={styles.infoContainer}>
+                        <Text style={styles.infoText}>Scores: {score}</Text>
+                        <Text style={styles.infoText}>Times: {times}</Text>
+                    </View> : this.onGameOver()}
+
+
                     <View style={styles.btnContainer}>
-                        <BtnItem title='Play' colors={['#f9f', '#bf3']} />
-                        <BtnItem title='Reset' colors={['#e1b01b', '#000']} />
+                        <BtnItem isGameOver={this.state.isGameOver} onPress={this.onPlayPress} title='Play' colors={['#f9f', '#bf3']} />
+                        <BtnItem onPress={this.onResetPress} title='Reset' colors={['#e1b01b', '#000']} />
                     </View>
                 </SafeAreaView>
 
