@@ -4,11 +4,12 @@ import { paper, rock, scissor } from '../Images';
 
 export default class SelectItem extends Component {
     render() {
-        const { selectImage } = this.props
+        const { selectImage, onPress, playerSelectItem, selectImageId } = this.props;
+        // console.log(playerSelectItem + 'playerSelect');
         return (
             <View style={styles.playContent}>
-                <TouchableOpacity>
-                    <Image style={styles.playerChoice} source={selectImage} />
+                <TouchableOpacity onPress={onPress}>
+                    <Image style={[styles.playerChoice, selectImageId === playerSelectItem && styles.selectedItem]} source={selectImage} />
                 </TouchableOpacity>
             </View>
         )
@@ -26,11 +27,13 @@ const styles = StyleSheet.create({
     },
     playerChoice: {
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
-        borderColor: '#ffff00',
-        borderWidth: 1,
         borderRadius: 20,
         marginBottom: 15,
         height: 70,
         width: 70,
     },
+    selectedItem: {
+        borderColor: '#ffff00',
+        borderWidth: 3,
+    }
 });

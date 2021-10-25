@@ -4,12 +4,12 @@ import LinearGradient from 'react-native-linear-gradient';
 
 export default class BtnItem extends Component {
     render() {
-        const { title, colors } = this.props;
+        const { title, colors, onPress, isGameOver } = this.props;
         return (
             <LinearGradient
                 style={[styles.btnContainer]}
                 colors={colors}>
-                <TouchableOpacity >
+                <TouchableOpacity onPress={onPress}>
                     <Text style={styles.buttonText}>{title}</Text>
                 </TouchableOpacity>
             </LinearGradient>
