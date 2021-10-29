@@ -49,11 +49,12 @@ export class OanTuTiGame extends Component {
 
             // this.state.listSelect[2]
             const randomBotSelect = setInterval(() => {
-                computerSelect = this.state.listSelect[2];
+                computerSelect = this.state.listSelect[Math.floor(Math.random() * 3)];
+                // computerSelect = this.state.listSelect[2];
                 this.setState({ computerSelect }, () => {
                     // console.log(computerSelect);
                 })
-            }, 200);
+            }, 20);
             //! clear Interval
             setTimeout(() => {
                 clearInterval(randomBotSelect);
