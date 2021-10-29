@@ -1,5 +1,6 @@
 
 import React, { Component, Fragment } from 'react';
+import { Provider } from 'react-redux';
 
 import DemoComponent from './src/Buoi1/DemoComponent/index';
 import DemoComponentDefault from './src/Buoi1/DemoComponentDefault';
@@ -16,13 +17,15 @@ import DemoScrollView from './src/Buoi4/DemoScrollView';
 import DemoSectionList from './src/Buoi4/DemoSectionList';
 import ExampleRender from './src/Buoi4/ExRender';
 import OanTuTiGame from './src/Buoi5/OanTuXiGame';
+import DemoRedux from './src/Buoi6/DemoRedux';
+import { store } from './src/Buoi6/redux/store';
 
 
 const App = () => {
   return (
-    <Fragment>
-      <OanTuTiGame />
-    </Fragment>
+    <Provider store={store}>
+      <DemoRedux />
+    </Provider>
   );
 };
 
