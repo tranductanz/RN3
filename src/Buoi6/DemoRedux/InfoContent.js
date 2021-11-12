@@ -1,13 +1,13 @@
-import React, {Component} from 'react';
-import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
-import {connect} from 'react-redux';
-import {updateUsernameAction} from '../redux/actions/countAction';
+import React, { Component } from 'react';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
+import { updateUsernameAction } from '../redux/actions/countAction';
 
 class InfoContent extends Component {
   render() {
     return (
       <View>
-        <Text style={{fontSize: 20}}> Info Content Component </Text>
+        <Text style={{ fontSize: 20 }}> Info Content Component </Text>
 
         <Text style={styles.headerText}>User Name: {this.props.username}</Text>
         <Text style={styles.headerText}>Address: {this.props.address}</Text>
@@ -47,8 +47,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateUsername: username => dispatch(updateUsernameAction(username)),
-  reset: () => dispatch({type: 'RESET'}),
+  updateUsername: (username) => {
+    dispatch(updateUsernameAction(username))
+  },
+  reset: () => dispatch({ type: 'RESET' }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(InfoContent);
