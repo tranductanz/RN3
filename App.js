@@ -1,32 +1,18 @@
+import React, { Component } from 'react';
 
-import React, { Component, Fragment } from 'react';
 import { Provider } from 'react-redux';
-
-import DemoComponent from './src/Buoi1/DemoComponent/index';
-import DemoComponentDefault from './src/Buoi1/DemoComponentDefault';
-import DemoStyle from './src/Buoi1/DemoStyle';
-import DemoFlex from './src/Buoi2/DemoFlex';
-import DemoImage from './src/Buoi2/DemoImage';
-import DemoStyleSheet from './src/Buoi2/DemoStyleSheet';
-import BaiTapReDoUI from './src/Buoi2/LamLaiBaiTapUI';
-import BaiTapUiBuoi3 from './src/Buoi3/BaiTapUI';
-import BindingData from './src/Buoi3/BindingData';
-import RenderList from './src/Buoi3/RenderList/img';
-import DemoFlatList from './src/Buoi4/DemoFlatList';
-import DemoScrollView from './src/Buoi4/DemoScrollView';
-import DemoSectionList from './src/Buoi4/DemoSectionList';
-import ExampleRender from './src/Buoi4/ExRender';
-import OanTuTiGame from './src/Buoi5/OanTuXiGame';
-import DemoRedux from './src/Buoi6/DemoRedux';
-import { store } from './src/Buoi6/redux/store';
-
-
-const App = () => {
-  return (
-    <Provider store={store}>
-      <DemoRedux />
-    </Provider>
-  );
-};
+// import {store} from './src/Buoi6/redux/store';
+import rootStore from './src/Buoi7/redux/store';
+import RootScreen from './src/Buoi10';
+//Stateful Component
+class App extends Component {
+  render() {
+    return (
+      <Provider store={rootStore}>
+        <RootScreen />
+      </Provider>
+    );
+  }
+}
 
 export default App;
